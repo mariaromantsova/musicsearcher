@@ -1,0 +1,145 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inter:500&display=swap');
+
+
+body {
+  background: #0000000d;
+}
+
+*:not(h1):not(.brand-logo):not(.material-icons):not(.material-icons-outlined) {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, .brand-logo {
+  color: #c2185b;
+  font-family: 'Fredoka One', cursive;
+}
+
+.card .card-content {
+  padding: 24px 24px 24px 14px;
+}
+
+nav ul a {
+  font-size: 1.2rem;
+}
+
+a {
+  color: #c2185b;
+}
+
+.input-field {
+  margin-top: 2rem;
+}
+
+.input-field .prefix.active {
+   color: #000;
+ }
+
+input.pink-input {
+  border-bottom: 1px solid #f48fb1!important;
+  box-shadow: 0 1px 0 0 #f48fb1!important;
+}
+
+input.pink-input + label {
+  color: #f48fb1!important;
+}
+
+input.pink-input:focus + label {
+  color: #c2185b!important;
+}
+
+input.pink-input:focus {
+  border-bottom: 1px solid #c2185b!important;
+  box-shadow: 0 1px 0 0 #c2185b!important;
+}
+
+tbody > tr:hover {
+  transition: 0.3s ease;
+  cursor: pointer;
+  background: #ffedf3;
+}
+
+tbody > tr.checked {
+  background: #ffedf3;
+}
+
+th {
+  text-align: center;
+}
+
+td.Active {
+  color: rgb(38, 166, 154);
+}
+
+td.Blocked {
+  color: #c2185b;
+}
+
+
+.albums-wrapper {
+  margin-top: 1.5em;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.album-card {
+  position: relative;
+  border-radius: 15px;
+  width: 179px;
+  margin: .5rem 0 1rem 0;
+}
+
+.overlay {
+  cursor: pointer;
+  border-radius: 15px 15px 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.album-card:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+
+.album-button {
+  cursor: pointer;
+  position: absolute;
+  left: 65px;
+  top: 85px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.album-button::before {
+  content: '\e145';
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border: solid 2px white;
+  z-index: 1;
+}
+
+.album-button.added::before {
+  content: '\e5ca';
+}
+
+.album-card:hover .album-button {
+  opacity: 1;
+}
+
+.album-card > .card-image > img {
+  width: 179px;
+  border-radius: 15px 15px 0 0;
+}
+
+.album-card > .card-image {
+  width: 179px;
+}

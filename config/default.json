@@ -1,0 +1,12 @@
+{
+  "port": 5000,
+  "jwtSecret": "12345",
+  "mongoUri": "mongodb+srv://kukusik:kukusik@cluster0-yjv6q.azure.mongodb.net/test?retryWrites=true&w=majority",
+  "google": {
+    "clientID": "69203956945-oe5f9slj01cde11fd5s1to3motpq1d6i.apps.googleusercontent.com",
+    "clientSecret": "6kKcbZ8_P-HTSsFbO73nwqT5"
+  },
+  "session": {
+    "cookieKey": "kykoldsasi"
+  }
+}
