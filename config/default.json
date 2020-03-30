@@ -1,10 +1,14 @@
 {
   "port": 5000,
   "jwtSecret": "12345",
-  "mongoUri": "mongodb+srv://kukusik:kukusik@cluster0-yjv6q.azure.mongodb.net/test?retryWrites=true&w=majority",
+  "mongoUri": "mongodb+srv://kykold:kykold@cluster0-4pdij.azure.mongodb.net/test?retryWrites=true&w=majority",
   "google": {
     "clientID": "69203956945-oe5f9slj01cde11fd5s1to3motpq1d6i.apps.googleusercontent.com",
     "clientSecret": "6kKcbZ8_P-HTSsFbO73nwqT5"
+  },
+  "spotify": {
+    "clientID": "07fcbe0d8a5547abbe120906b087ec59",
+    "clientSecret": "f395405114084b8c8720987cf9f14a8a"
   },
   "session": {
     "cookieKey": "kykoldsasi"

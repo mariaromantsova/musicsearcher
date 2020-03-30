@@ -19,7 +19,6 @@ export const HomePage = () => {
     })
     .then(data => {
       let recievedAlbums = data.topalbums?.album;
-
       if (!JSON.parse(localStorage.getItem('userData'))) {
         console.log('no user data');
         updateAlbums(recievedAlbums)
@@ -28,16 +27,19 @@ export const HomePage = () => {
 
       axios.get('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/albums')
         .then(response => {
+          console.log('recieved albums: ', response.data);
             const addedAlbums = response.data;
             recievedAlbums = recievedAlbums.map(recievedAlbum => {
 
               addedAlbums.map(addedAlbum => {
                 if (addedAlbum.name === recievedAlbum.name) recievedAlbum.isAdded = addedAlbum.isAdded
+                return addedAlbum
               })
             return recievedAlbum
           })
         updateAlbums(recievedAlbums)
         })
+        
       .catch(() => updateAlbums(recievedAlbums))
     })
 
