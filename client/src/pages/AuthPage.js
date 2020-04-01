@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
-import {useHttp} from '../hooks/http.hook';
-import {useMessage} from '../hooks/message.hook';
-import {AuthContext} from '../context/AuthContext';
-import axios from 'axios';
+import { useHttp } from '../hooks/http.hook';
+import { useMessage } from '../hooks/message.hook';
+import { AuthContext } from '../context/AuthContext';
+import queryString from "query-string";
 
 
 export const AuthPage = () => {
@@ -16,13 +16,16 @@ export const AuthPage = () => {
   })
 
   useEffect(() => {
+    let query = queryString.parse(window.location.search);
+    if (query.status === 'Blocked') {
+      message('Пользователь заблокирован')
+      clearError()
+      setTimeout(() => window.location.replace('/signin'), 2500)
+    }
+
     message(error)
     clearError()
   }, [error, message, clearError])
-
-  useEffect(() => {
-    window.M.updateTextFields()
-  }, [])
 
   useEffect(() => {
     window.M.updateTextFields()
@@ -39,15 +42,10 @@ export const AuthPage = () => {
     } catch (e) {}
   }
 
-  // const googleLoginHandler = () => {
-  //   axios.get('/api/auth/google')
-  // }
-
 
   return (
-    <div className='row'>
-      <div className="col s10 m6 offset-s1 offset-m3" style={{ textAlign: 'center', marginTop: '4em' }}>
-        {/* <h1>MusicSearcher</h1> */}
+    <div className='row' style={{ marginBottom: '0' }}>
+      <div className="col s10 m6 offset-s1 offset-m3" style={{ textAlign: 'center', marginTop: '2em' }}>
         <div className="card">
           <div className="card-content">
             <span className="card-title">
@@ -78,17 +76,11 @@ export const AuthPage = () => {
                 <label htmlFor="password">Password</label>
 
                 <div style={{paddingTop: '1.5em'}}>
-                  <a href="http://localhost:5000/api/auth/google">Sign in with Google</a>
-                  {/* <button
-                    className="btn pink lighten-2"
-                    style={{marginRight: '10px'}}
-                    onClick={googleLoginHandler}
-                    disabled={loading}
-                  >
-                    Sign in with Google
-                  </button> */}
+                  <a href="http://localhost:5000/api/auth/google" className="waves-effect waves-light btn deep-orange accent-4">Sign in with Google</a>
                 </div>
-
+                <div style={{paddingTop: '.5em'}}>
+                  <a href="http://localhost:5000/api/auth/spotify" className="waves-effect waves-light btn green accent-4">Sign in with Spotify</a>
+                </div>
                 <p style={{paddingTop: '1.5em'}}>
                   Don't have an account?
                 </p>

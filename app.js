@@ -5,17 +5,10 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const passport = require('passport')
 const passportSetup = require('./config/passport-setup')
-const cookieSession = require('cookie-session')
 
 
 const app = express()
 
-app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: [config.get("session.cookieKey")]
-}))
-
-//init passport
 app.use(passport.initialize())
 app.use(passport.session())
 

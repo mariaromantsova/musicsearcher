@@ -36,9 +36,8 @@ export const RegistrationPage = () => {
   }
 
   return (
-    <div className='row'>
-      <div className="col s10 m6 offset-s1 offset-m3" style={{ textAlign: 'center', marginTop: '4em' }}>
-        {/* <h1>MusicSearcher</h1> */}
+    <div className='row' style={{ marginBottom: '0' }}>
+      <div className="col s10 m6 offset-s1 offset-m3" style={{ textAlign: 'center', marginTop: '2em' }}>
         <div className="card">
           <div className="card-content">
             <span className="card-title">
