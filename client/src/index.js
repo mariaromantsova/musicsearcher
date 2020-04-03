@@ -2,14 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+// import axios from 'axios';
+
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import allReducers from './reducers';
+// import { updatePlaylists } from './actions';
+import updatePlaylistsReducer from './reducers/updatePlaylistsReducer';
+
+import "materialize-css/dist/js/materialize.min.js";
+import "materialize-css/dist/css/materialize.min.css";
+
 
 const store = createStore(
-  allReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  updatePlaylistsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
+
+
+// axios.get('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists')
+// .then(res => {
+//   console.log(res.data);
+//   store.dispatch(updatePlaylists({playlists: res.data}))
+// })
+// .catch(err => console.log(err))
 
 // //action
 // const increment = () => {
@@ -51,4 +65,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-serviceWorker.unregister();

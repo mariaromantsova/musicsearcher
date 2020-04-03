@@ -78,7 +78,7 @@ export const RegistrationPage = () => {
                 />
                 <label htmlFor="password">Password</label>
                 <div style={{paddingTop: '1.5em'}}>
-                  <Link to="/signin">Sign In</Link>
+                  <Link to="/signin" className="pink-text">Sign In</Link>
                 </div>
               </div>
 

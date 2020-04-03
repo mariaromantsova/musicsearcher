@@ -3,42 +3,43 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { AuthPage } from './pages/AuthPage';
 import { HomePage } from './pages/HomePage';
-import { MyAlbumsPage } from './pages/MyAlbumsPage';
-import UsersPage from './pages/UsersPage';
+import { PlaylistsPage } from './pages/PlaylistsPage';
+import { UsersPage } from './pages/UsersPage';
 
-export const useRoutes = isAuthenticated => {
+export const useRoutes = (isAuthenticated, userId) => {
   if (isAuthenticated) {
-    return (
-      <Switch>
+    return (<Switch>
+      <Route path="/home">
+        <HomePage/>
+      </Route>
 
-        <Route path="/users">
-          <UsersPage />
-        </Route>
-        <Route path="/albums">
-          <MyAlbumsPage />
-        </Route>
-        <Route path="/home">
-          <HomePage />
-        </Route>
-        <Redirect to="/home" />
+      <Route path={"/" + userId + "/playlists"}>
+        <PlaylistsPage/>
+      </Route>
 
-      </Switch>
-    );
+      <Route path="/users">
+        <UsersPage/>
+      </Route>
+
+      <Redirect to={"/" + userId + "/playlists"}/>
+
+    </Switch>);
   }
-  return (
-    <Switch>
+  return (<Switch>
 
-      <Route path="/signin">
-        <AuthPage />
-      </Route>
-      <Route path="/signup">
-        <RegistrationPage />
-      </Route>
-      <Route path="/">
-        <HomePage />
-      </Route>
-      <Redirect to="/" />
+    <Route path="/signin">
+      <AuthPage/>
+    </Route>
 
-    </Switch>
-  );
+    <Route path="/signup">
+      <RegistrationPage/>
+    </Route>
+
+    <Route path="/">
+      <HomePage/>
+    </Route>
+
+    <Redirect to="/"/>
+
+  </Switch>);
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-export default class UsersPage extends Component {
+export class UsersPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -136,7 +136,7 @@ export default class UsersPage extends Component {
   render() {
     return (
       <div>
-        <h3>Users</h3>
+        <h4>Users</h4>
         <table className="table">
           <thead className="thead-light">
             <tr>

@@ -85,7 +85,7 @@ export const AuthPage = () => {
                   Don't have an account?
                 </p>
                 <div>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signup" className="pink-text">Sign Up</Link>
                 </div>
               </div>
 
