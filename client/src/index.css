@@ -1,4 +1,3 @@
-@import "~materialize-css/dist/css/materialize.min.css";
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Inter:500&display=swap');
 
@@ -11,8 +10,24 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+i {
+  font-size: 37px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+.p0 {
+  padding: 0!important;
+}
+
+.m0 {
+  margin: 0!important;
+}
+
 h1, .brand-logo {
-  color: #c2185b;
+  color: #c2185b!important;
   font-family: 'Fredoka One', cursive;
 }
 
@@ -20,8 +35,17 @@ h1, .brand-logo {
   padding: 24px 24px 24px 14px;
 }
 
-nav ul a {
-  font-size: 1.2rem;
+.playlist-card .card-content {
+  height: 8em;
+}
+
+.card-title {
+  cursor: default;
+}
+
+nav a {
+  font-size: 1.2rem!important;
+  color: #e6e6e6!important;
 }
 
 a {
@@ -33,7 +57,7 @@ a {
 }
 
 .input-field .prefix.active {
-   color: #000;
+   color: #000!important;
  }
 
 input.pink-input {
@@ -86,7 +110,7 @@ td.Blocked {
 
 .album-card {
   position: relative;
-  border-radius: 15px;
+  border-radius: 10px!important;
   width: 179px;
   margin: .5rem 0 1rem 0;
 }
@@ -103,9 +127,8 @@ td.Blocked {
   transition: background 0.5s ease;
 }
 
-.album-card:hover .overlay {
-  display: block;
-  background: rgba(0, 0, 0, .3);
+#dropdown1 a {
+  color: rgba(0, 0, 0, .7);
 }
 
 .album-button {
@@ -126,6 +149,10 @@ td.Blocked {
   border: solid 2px white;
   z-index: 1;
 }
+/*
+h5:hover .card-image {
+  -webkit-filter: brightness(60%);
+} */
 
 .album-button.added::before {
   content: '\e5ca';
@@ -137,9 +164,93 @@ td.Blocked {
 
 .album-card > .card-image > img {
   width: 179px;
-  border-radius: 15px 15px 0 0;
+  border-radius: 10px 10px 0 0!important;
 }
 
 .album-card > .card-image {
   width: 179px;
+}
+
+
+.modal { width: 30% !important; border-radius: 1em  }
+.modal .modal-content {
+  padding: 20px 20px 0px 20px;
+}
+.modal .modal-footer {
+  text-align: center;
+}
+
+.collapsible-header {
+  justify-content: space-between;
+}
+
+/* .playlist-options-btn {
+  cursor: pointer;
+  transition: .5s ease;
+}
+
+.playlist-options-btn:hover {
+  color: #c2185b;
+} */
+.playlist-cover {
+  transition: all .7s ease;
+  border-radius: 15px 15px 0 0;
+}
+
+.card-image img {
+  transition: all .7s ease;
+}
+
+.card-image {
+  border-radius: 3px;
+  background-size: 50%;
+  cursor: pointer;
+  transition: all .7s ease;
+  -webkit-filter: brightness(100%);
+}
+
+.card-image img {
+  border-radius: 15px 15px 0 0!important;
+}
+
+.card-image:hover .playlist-cover {
+  -webkit-filter: brightness(60%);
+}
+
+.card-image:hover img {
+  -webkit-filter: brightness(60%);
+}
+
+.playlist-card {
+  border-radius: 15px!important;
+}
+
+.playlist-card .playlist-title {
+  text-shadow: -2px 2px 1px rgba(0, 0, 0, .6);
+}
+
+.collection .collection-item.active {
+  background-color: #212121!important;
+  display: flex;
+  align-items: center;
+}
+
+.collection-item button {
+  margin-right: 3em;
+}
+
+.playlist-card .card-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%!important;
+}
+
+.playlist-card i {
+  transition: all .2s ease;
+  cursor: pointer;
+  opacity: .5;
+}
+
+.playlist-card i:hover {
+  color: #000;
 }

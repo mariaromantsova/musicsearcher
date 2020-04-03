@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
+import React, { useEffect, useContext } from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 import M from "materialize-css/dist/js/materialize.min.js";
 
-export const Navbar = ({ isAuthenticated, email, username }) => {
+export const Navbar = ({ isAuthenticated, email, username, userId }) => {
   const history = useHistory()
   const auth = useContext(AuthContext)
 
@@ -13,22 +13,24 @@ export const Navbar = ({ isAuthenticated, email, username }) => {
     history.push('/')
   }
 
-  const sidenav = document.querySelector(".sidenav");
-  M.Sidenav.init(sidenav, {
-      edge: "left",
-      inDuration: 250
-  });
+  useEffect(() => {
+    const sidenav = document.querySelector(".sidenav");
+    M.Sidenav.init(sidenav, {
+        edge: "left",
+        inDuration: 250
+    });
+  })
 
   return isAuthenticated ? (
     <div>
       <div className="navbar-fixed">
         <nav>
-          <div className="nav-wrapper pink darken-4">
+          <div className="nav-wrapper grey darken-4">
             <div className="container">
 
-              <NavLink to="#" data-target="slide-out" className="sidenav-trigger show-on-medium-and-down">
+              <span data-target="slide-out" className="sidenav-trigger show-on-medium-and-down" style={{ cursor: "pointer" }}>
                   <i className="material-icons" style={{ fontSize: '37px' }}>menu</i>
-              </NavLink>
+              </span>
               <NavLink to='/home'>
                 <span className="brand-logo">
                   MusicSearcher
@@ -36,7 +38,7 @@ export const Navbar = ({ isAuthenticated, email, username }) => {
               </NavLink>
               <ul id="nav-mobile" className="right">
                 <li className="hide-on-med-and-down">
-                  <NavLink to='/albums'>My Albums</NavLink>
+                  <NavLink to={"/" + userId + "/playlists"}>Playlists</NavLink>
                 </li>
                 <li className="hide-on-med-and-down">
                   <NavLink to='/users'>Users</NavLink>
@@ -54,7 +56,7 @@ export const Navbar = ({ isAuthenticated, email, username }) => {
       <ul id="slide-out" className="sidenav">
         <li><div className="user-view center-align">
           <div className="background">
-            <img alt="" src="https://merehead.com/blog/wp-content/uploads/gradient-design.jpeg" />
+            <img alt="" src="https://img.discogs.com/XOPpJ3wQribJGdk-rb4-yAfiBtM=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-2821873-1445885288-1628.jpeg.jpg" />
           </div>
           <img alt="" className="circle" style={{
              position: 'relative',
@@ -66,13 +68,22 @@ export const Navbar = ({ isAuthenticated, email, username }) => {
         </div></li>
         {/* <li><div className="divider"></div></li> */}
         <li>
-          <NavLink to='/home'>Home</NavLink>
+          <NavLink to='/home'>
+            <i className="material-icons">home</i>
+            Home
+          </NavLink>
         </li>
         <li>
-          <NavLink to='/albums'>My Albums</NavLink>
+          <NavLink to={"/" + userId + "/playlists"}>
+          <i className="material-icons">library_music</i>
+            My Playlists
+          </NavLink>
         </li>
         <li>
-          <NavLink to='/users'>Users</NavLink>
+          <NavLink to='/users'>
+          <i className="material-icons">people</i>
+            Users
+          </NavLink>
         </li>
       </ul>
 
@@ -80,7 +91,7 @@ export const Navbar = ({ isAuthenticated, email, username }) => {
   ) : (
     <div className="navbar-fixed">
       <nav>
-        <div className="nav-wrapper pink darken-4">
+        <div className="nav-wrapper grey darken-4">
           <div className="container">
             <NavLink to='/'>
               <span className="brand-logo">

@@ -1,8 +1,6 @@
-import updateAlbumsReducer from './updateAlbumsReducer'
-import {combineReducers} from 'redux'
-
-const allReducers = combineReducers({
-  addedAlbums: updateAlbumsReducer,
-})
-
-export default allReducers;
+// import updatePlaylistsReducer from './updatePlaylistsReducer'
+// import { combineReducers } from 'redux'
+//
+// export const allReducer = combineReducers({
+//   playlists: updatePlaylistsReducer,
+// })
