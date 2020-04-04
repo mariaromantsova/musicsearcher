@@ -85,18 +85,19 @@ router.post('/login', [
 })
 
 // auth with google+
-router.get('/google', passport.authenticate('google', {
+router.get('/google',
+passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 
   if (req.user.status === 'Blocked') {
-    res.redirect(`http://localhost:3000/signin?status=${req.user.status}`)
+    res.redirect('https://musicsearcher-test.herokuapp.com' + `signin?status=${req.user.status}`)
     return
   }
 
-  res.redirect(`http://localhost:3000?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}`)
+  res.redirect('https://musicsearcher-test.herokuapp.com' + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}`)
 });
 
 
@@ -110,11 +111,11 @@ router.get(
 
 router.get("/spotify/redirect", passport.authenticate("spotify"), (req, res) => {
   if (req.user.status === 'Blocked') {
-    res.redirect(`http://localhost:3000/signin?status=${req.user.status}`)
+    res.redirect('https://musicsearcher-test.herokuapp.com' + `/signin?status=${req.user.status}`)
     return
   }
 
-  res.redirect(`http://localhost:3000?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}&status=${req.user.status}`)
+  res.redirect('https://musicsearcher-test.herokuapp.com' + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}&status=${req.user.status}`)
 });
 
 module.exports = router

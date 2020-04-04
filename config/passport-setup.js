@@ -17,7 +17,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: config.get("google.clientID"),
   clientSecret: config.get("google.clientSecret"),
-  callbackURL: '/api/auth/google/redirect'
+  callbackURL: 'https://musicsearcher-test.herokuapp.com' + '/api/auth/google/redirect'
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({googleId: profile.id}).then((currentUser) => {
     if (currentUser) {
@@ -39,7 +39,7 @@ passport.use(new GoogleStrategy({
 passport.use(new SpotifyStrategy({
   clientID: config.get("spotify.clientID"),
   clientSecret: config.get("spotify.clientSecret"),
-  callbackURL: '/api/auth/spotify/redirect'
+  callbackURL: 'https://musicsearcher-test.herokuapp.com' + '/api/auth/spotify/redirect'
 }, (accessToken, refreshToken, expires_in, profile, done) => {
   // user = { ...profile, token: accessToken };
   User.findOne({spotifyId: profile.id}).then((currentUser) => {
