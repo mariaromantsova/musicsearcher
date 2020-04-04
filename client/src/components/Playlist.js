@@ -39,7 +39,7 @@ export const Playlist = (props) => {
     </li>
 
     <li className="collection-item">
-      <div className="albums-wrapper">
+      <div className="items-wrapper">
         {renderAlbums(albums, props.match.params.playlistName)}
       </div>
     </li>

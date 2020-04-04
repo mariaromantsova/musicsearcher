@@ -26,9 +26,17 @@ img {
   margin: 0!important;
 }
 
+.row .col {
+  padding: 0 .75rem 0 0!important;
+}
+
 h1, .brand-logo {
   color: #c2185b!important;
   font-family: 'Fredoka One', cursive;
+}
+
+.brand-logo {
+  position: static!important;
 }
 
 .card .card-content {
@@ -43,9 +51,41 @@ h1, .brand-logo {
   cursor: default;
 }
 
-nav a {
+nav {
   font-size: 1.2rem!important;
   color: #e6e6e6!important;
+}
+
+nav li a {
+  font-size: 1.1rem!important;
+}
+
+nav .sidenav-trigger i {
+  font-size: 37px!important;
+}
+
+nav .sidenav-trigger {
+  margin: 0 2em 0 0!important;
+}
+
+nav .search {
+  width: 12em;
+}
+
+nav .search input {
+  height: 2rem!important;
+  color: #fff!important;
+  border-bottom: 1px solid #fff!important;
+  box-shadow: 0 1px 0 0 #fff!important;
+}
+
+nav .search input:focus {
+  border-bottom: 1px solid #c2185b!important;
+  box-shadow: 0 1px 0 0 #c2185b!important;
+}
+
+i {
+  cursor: pointer;
 }
 
 a {
@@ -57,7 +97,7 @@ a {
 }
 
 .input-field .prefix.active {
-   color: #000!important;
+   color: #c2185b!important;
  }
 
 input.pink-input {
@@ -101,18 +141,22 @@ td.Blocked {
 }
 
 
-.albums-wrapper {
+.items-wrapper {
   margin-top: 1.5em;
-  justify-content: space-between;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
 }
 
+.card {
+
+}
+
 .album-card {
   position: relative;
-  border-radius: 10px!important;
+  border-radius: 15px!important;
+  margin: .5rem 1rem 1rem 0!important;
   width: 179px;
-  margin: .5rem 0 1rem 0;
 }
 
 .overlay {
@@ -221,10 +265,6 @@ h5:hover .card-image {
   -webkit-filter: brightness(60%);
 }
 
-.playlist-card {
-  border-radius: 15px!important;
-}
-
 .playlist-card .playlist-title {
   text-shadow: -2px 2px 1px rgba(0, 0, 0, .6);
 }
@@ -237,6 +277,13 @@ h5:hover .card-image {
 
 .collection-item button {
   margin-right: 3em;
+}
+
+.playlist-card {
+  position: relative;
+  border-radius: 15px!important;
+  margin: .5rem 1rem 1rem 0!important;
+  width: 18em;
 }
 
 .playlist-card .card-title {
@@ -254,3 +301,9 @@ h5:hover .card-image {
 .playlist-card i:hover {
   color: #000;
 }
+
+/* @media only screen and (min-width: 601px) {
+  .container {
+    width: 85%;
+  }
+} */

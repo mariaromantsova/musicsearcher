@@ -14,6 +14,10 @@ export const Playlists = () => {
   }
 
   return (
+    <div className="items-wrapper">
+      {
     Object.keys(playlists).map(name => <PlaylistCard key={name} albums={playlists[name]} playlistName={name} />)
+      }
+    </div>
   )
 }

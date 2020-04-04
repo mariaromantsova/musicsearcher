@@ -38,7 +38,7 @@ export const PlaylistCard = ({ albums, playlistName }) => {
 
   const openPlaylist = () => window.location.href += `/${playlistName}`
 
-  return albums && (<div className="col s6 m4">
+  return albums && (
     <div className="card playlist-card">
       <div className="card-image" onClick={openPlaylist}>
         {
@@ -46,7 +46,7 @@ export const PlaylistCard = ({ albums, playlistName }) => {
             ? <div className="playlist-cover" style={styles.playlistCover}></div>
             : <img src={albums[albums.length - 1].image[2]['#text']} alt=""/>
         }
-        <span className="card-title">
+        <span className="card-title playlist-title">
           {playlistName}
           <span className="playlist-actions">
             {/* <i className="edit-playlist material-icons">edit</i> */}
@@ -59,5 +59,5 @@ export const PlaylistCard = ({ albums, playlistName }) => {
         <TextTruncate line={2} element="p" truncateText="…" text={artists}/>
       </div>
     </div>
-  </div>)
+  )
 };

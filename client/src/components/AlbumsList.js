@@ -36,41 +36,43 @@ export const AlbumsList = () => {
   }
 
   return albums.length
-    ? (<div className='albums-wrapper'>
+    ? (<div className='items-wrapper'>
       {
         albums.map(album => {
-          return (<div className="card album-card" key={album.name}>
-            <div className="card-image">
-              <img src={album.image[2]['#text']} alt="" onMouseEnter={() => {
-                  setCurrentAlbum(album)
-                }}/>
-            </div>
-            <div className="card-content">
-              <h5>{album.artist.name}</h5>
-              <p>{album.name}</p>
-            </div>
-            {
-              localStorage.getItem('userData') && <div>
-                  <div data-target='dropdown1' className="dropdown-trigger album-button material-icons"></div>
+          return (
+              <div className="card album-card" key={album.name}>
+              <div className="card-image">
+                <img src={album.image[2]['#text']} alt="" onMouseEnter={() => {
+                    setCurrentAlbum(album)
+                  }}/>
+              </div>
+              <div className="card-content">
+                <h5>{album.artist.name}</h5>
+                <p>{album.name}</p>
+              </div>
+              {
+                localStorage.getItem('userData') && <div>
+                    <div data-target='dropdown1' className="dropdown-trigger album-button material-icons"></div>
 
-                  <ul id='dropdown1' className='dropdown-content'>
-                    {
-                      playlistsNames.map(playlistName => <li key={playlistName}>
-                        <a onClick={(e) => {
-                            e.preventDefault()
-                            addToPlaylist(playlistName)
-                          }} href="#!">{playlistName}</a>
-                      </li>)
-                    }
-                    <li className="divider" tabIndex="-1"></li>
-                    <li>
-                      <a className="modal-trigger" href="#modal1">
-                        <i className="material-icons">add</i>new playlist</a>
-                    </li>
-                  </ul>
-                </div>
-            }
-          </div>)
+                    <ul id='dropdown1' className='dropdown-content'>
+                      {
+                        playlistsNames.map(playlistName => <li key={playlistName}>
+                          <a onClick={(e) => {
+                              e.preventDefault()
+                              addToPlaylist(playlistName)
+                            }} href="#!">{playlistName}</a>
+                        </li>)
+                      }
+                      <li className="divider" tabIndex="-1"></li>
+                      <li>
+                        <a className="modal-trigger" href="#modal1">
+                          <i className="material-icons">add</i>new playlist</a>
+                      </li>
+                    </ul>
+                  </div>
+              }
+            </div>
+        )
         })
       }
       <CreatePlaylist album={currentAlbum}/>
