@@ -13,7 +13,7 @@ export const PlaylistCard = ({ albums, playlistName }) => {
   const [artists, setArtists] = useState("")
 
   useEffect(() => {
-    setArtists(albums.map(album => album.artist.name + ',').join(" ").slice(0, -1))
+    setArtists(albums.map(album => album.artist.name || album.artist + ',').join(" ").slice(0, -1))
 
     if (albums.length < 4) {
       setImageUrls(`url(${albums[0].image[2]['#text']})`)
@@ -32,7 +32,7 @@ export const PlaylistCard = ({ albums, playlistName }) => {
   const deletePlaylist = (e) => {
     e.stopPropagation()
     axios.post('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists/' + playlistName + '/delete/').then(response => {
-      dispatch(updatePlaylists({playlists: response.data}))
+      dispatch(updatePlaylists(response.data))
     })
   }
 

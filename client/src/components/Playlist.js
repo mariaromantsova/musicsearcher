@@ -11,7 +11,7 @@ export const Playlist = (props) => {
 
   const deleteFromPlaylist = (albumName, playlistName) => {
     axios.post('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists/' + playlistName + '/deleteAlbum/', [playlistName, albumName]).then(response => {
-      dispatch(updatePlaylists({playlists: response.data}))
+      dispatch(updatePlaylists(response.data))
     })
   }
 
@@ -21,7 +21,7 @@ export const Playlist = (props) => {
         <img src={album.image[2]['#text']} alt=""/>
       </div>
       <div className="card-content">
-        <h5>{album.artist.name}</h5>
+        <h5>{album.artist.name || album.name}</h5>
         <p>{album.name}</p>
       </div>
       <div className="album-button material-icons added" onClick={() => deleteFromPlaylist(album.name, playlistName)}></div>

@@ -28,13 +28,11 @@ export default function App() {
     if (isAuthenticated && userId) {
       axios.get('/api/users/' + userId + '/playlists')
       .then(res => {
-        // console.log(res.data);
-        dispatch(updatePlaylists({playlists: res.data}))
+        dispatch(updatePlaylists(res.data))
       })
       .catch(err => console.log(err))
     }
   })
-
 
 
   return (

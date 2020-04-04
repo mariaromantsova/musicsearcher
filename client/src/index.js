@@ -7,23 +7,16 @@ import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 // import { updatePlaylists } from './actions';
-import updatePlaylistsReducer from './reducers/updatePlaylistsReducer';
+import allReducer from './reducers/index';
 
 import "materialize-css/dist/js/materialize.min.js";
 import "materialize-css/dist/css/materialize.min.css";
 
 
 const store = createStore(
-  updatePlaylistsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  allReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-
-// axios.get('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists')
-// .then(res => {
-//   console.log(res.data);
-//   store.dispatch(updatePlaylists({playlists: res.data}))
-// })
-// .catch(err => console.log(err))
 
 // //action
 // const increment = () => {

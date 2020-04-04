@@ -8,7 +8,7 @@ export const Playlists = () => {
   const playlists = useSelector(state => state.playlists)
 
   if (!playlists) {
-    return <h5 style={{ textAlign: "center", marginTop: "4em"}}>Nothing here yet🐀</h5>
+    return <h5 style={{ textAlign: "center", marginTop: "4em"}}>Nothing here yet<span role="img" aria-label="rat">🐀</span></h5>
   } else if (!Object.keys(playlists).length) {
     return <Spinner/>
   }

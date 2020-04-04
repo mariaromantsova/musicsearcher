@@ -73,7 +73,7 @@ nav .search {
 }
 
 nav .search input {
-  height: 2rem!important;
+  height: 1.6rem!important;
   color: #fff!important;
   border-bottom: 1px solid #fff!important;
   box-shadow: 0 1px 0 0 #fff!important;
@@ -82,6 +82,10 @@ nav .search input {
 nav .search input:focus {
   border-bottom: 1px solid #c2185b!important;
   box-shadow: 0 1px 0 0 #c2185b!important;
+}
+
+nav .search .input-field .prefix {
+  top: .3rem;
 }
 
 i {

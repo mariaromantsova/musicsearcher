@@ -1,8 +1,8 @@
-const updatePlaylistsReducer = (state = {playlists: {}}, action) => {
+const updatePlaylistsReducer = (state = {}, action) => {
     switch (action.type) {
       // case 'ADD':
       // return [...state, action.payload]
-      case 'UPDATE':
+      case 'UPDATE_PLAYLISTS':
       // return state.filter(x => x.name !== action.payload.name)
         return action.payload
       default:

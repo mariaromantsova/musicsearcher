@@ -14,7 +14,7 @@ export const CreatePlaylist = ({album}) => {
 
   const createPlaylist = () => {
     axios.post('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists/create/', {playlistName, album})
-    .then(res => dispatch(updatePlaylists({playlists: res.data})))
+    .then(res => dispatch(updatePlaylists(res.data)))
   }
 
   return (<div>

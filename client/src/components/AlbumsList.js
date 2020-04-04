@@ -3,26 +3,34 @@ import {CreatePlaylist} from './CreatePlaylist';
 import {Spinner} from './Spinner';
 import M from 'materialize-css';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { updatePlaylists } from '../actions';
+import {useSelector, useDispatch} from 'react-redux';
+import {updatePlaylists} from '../actions';
 
 const userName = 'cemetary_party',
   apiKey = '52c7f1e1257548e0650675e63ead469c';
 
-
 export const AlbumsList = () => {
+  const searchQuery = useSelector(state => state.query)
   const playlistsNames = useSelector(state => Object.keys(state.playlists))
   const dispatch = useDispatch()
   const [albums, setAlbums] = useState([])
   const [currentAlbum, setCurrentAlbum] = useState()
 
   useEffect(() => {
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${userName}&api_key=${apiKey}&period=6month&format=json`).then(res => res.json()).then(data => {
-      let lastFmAlbums = data.topalbums
-        ?.album;
-      setAlbums(lastFmAlbums)
-    })
-  }, []);
+    if (searchQuery.length) {
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchQuery}&api_key=${apiKey}&limit=10&format=json`).then(res => res.json()).then(data => {
+        let lastFmAlbums = data.results.albummatches.album;
+        setAlbums(lastFmAlbums)
+      })
+    } else {
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${userName}&api_key=${apiKey}&period=6month&format=json`).then(res => res.json()).then(data => {
+        let lastFmAlbums = data.topalbums?.album;
+        setAlbums(lastFmAlbums.filter((album, index, self) => {
+          return index === self.indexOf(album);
+        }))
+      })
+    }
+  }, [searchQuery]);
 
   useEffect(() => {
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'), {constrainWidth: false});
@@ -31,7 +39,7 @@ export const AlbumsList = () => {
 
   const addToPlaylist = (playlistName) => {
     axios.post('/api/users/' + JSON.parse(localStorage.getItem('userData')).userId + '/playlists/' + playlistName + '/update/', {playlistName, currentAlbum}).then(response => {
-      dispatch(updatePlaylists({playlists: response.data}))
+      dispatch(updatePlaylists(response.data))
     })
   }
 
@@ -39,15 +47,15 @@ export const AlbumsList = () => {
     ? (<div className='items-wrapper'>
       {
         albums.map(album => {
-          return (
-              <div className="card album-card" key={album.name}>
+          return album.image[0]['#text'] && (
+            <div className="card album-card" key={album.url}>
               <div className="card-image">
                 <img src={album.image[2]['#text']} alt="" onMouseEnter={() => {
                     setCurrentAlbum(album)
                   }}/>
               </div>
               <div className="card-content">
-                <h5>{album.artist.name}</h5>
+                <h5>{album.artist.name || album.artist}</h5>
                 <p>{album.name}</p>
               </div>
               {
@@ -72,7 +80,7 @@ export const AlbumsList = () => {
                   </div>
               }
             </div>
-        )
+          )
         })
       }
       <CreatePlaylist album={currentAlbum}/>

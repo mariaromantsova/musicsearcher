@@ -1,6 +1,8 @@
-// import updatePlaylistsReducer from './updatePlaylistsReducer'
-// import { combineReducers } from 'redux'
-//
-// export const allReducer = combineReducers({
-//   playlists: updatePlaylistsReducer,
-// })
+import updatePlaylistsReducer from './updatePlaylistsReducer'
+import updateQueryReducer from './updateQueryReducer'
+import { combineReducers } from 'redux'
+
+export default combineReducers({
+  playlists: updatePlaylistsReducer,
+  query: updateQueryReducer
+})

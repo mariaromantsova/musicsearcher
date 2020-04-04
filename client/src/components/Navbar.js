@@ -2,9 +2,13 @@ import React, { useEffect, useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import M from "materialize-css/dist/js/materialize.min.js";
+import { useDispatch } from 'react-redux';
+import { updateQuery } from '../actions';
+
 
 export const Navbar = ({ isAuthenticated, email, username, userId }) => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const auth = useContext(AuthContext)
 
   const logoutHandler = (event) => {
@@ -13,7 +17,13 @@ export const Navbar = ({ isAuthenticated, email, username, userId }) => {
     history.push('/')
   }
 
+  const search = (e) => {
+    history.push('/home')
+    dispatch(updateQuery(e.target.value))
+  }
+
   useEffect(() => {
+
     const sidenav = document.querySelector(".sidenav");
     M.Sidenav.init(sidenav, {
         edge: "left",
@@ -21,11 +31,7 @@ export const Navbar = ({ isAuthenticated, email, username, userId }) => {
     });
     const autocomplete = document.querySelector(".autocomplete");
     M.Autocomplete.init(autocomplete, {
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": null
-      },
+      data: {},
     });
   })
 
@@ -35,14 +41,18 @@ export const Navbar = ({ isAuthenticated, email, username, userId }) => {
         <nav className="grey darken-4">
           <div className="container nav-wrapper">
             <NavLink to="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></NavLink>
-            <NavLink to='/home' className="brand-logo left">
+            <NavLink to='/home' className="brand-logo left hide-on-small-only" onClick={() => dispatch(updateQuery(""))}>
             MusicSearcher
           </NavLink>
               <ul id="nav-mobile" className="right">
-                <li className="search hide-on-small-only">
+                <li className="search">
                   <div className="input-field">
                       <i className="material-icons prefix">search</i>
-                      <input type="text" id="autocomplete-input" className="autocomplete" />
+                      <input
+                        type="text"
+                        id="autocomplete-input" className="autocomplete"
+                        onChange={search}
+                      />
                   </div>
                 </li>
                 <li>
