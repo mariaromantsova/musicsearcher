@@ -12,7 +12,7 @@ export const AlbumPage = (props) => {
     const { match: { params } } = props;
 
     let lastFmAlbum;
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${apiKey}&artist=${params.artist}&album=${params.albumName}&lang=en&format=json`).then(res => res.json()).then(data => {
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${apiKey}&artist=${params.artist}&album=${params.albumName}&lang=en&format=json`).then(res => res.json()).then(data => {
       lastFmAlbum = data.album
       setAlbum(lastFmAlbum)
     })
