@@ -33,7 +33,7 @@ export const HomePage = () => {
 
     Object.values(playlists).map(playlist => {
       playlist.map(album => {
-        fetch(`http://ws.audioscrobbler.com/2.0/?method=album.gettoptags&artist=${album.artist.name || album.artist}&album=${album.name}&api_key=${apiKey}&format=json`).then(res => res.json()).then(data => {
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=album.gettoptags&artist=${album.artist.name || album.artist}&album=${album.name}&api_key=${apiKey}&format=json`).then(res => res.json()).then(data => {
           if (data.toptags.tag[0]) {
             // console.log(album.artist.name || album.artist, data.toptags.tag[0].name);
             dispatch(updateTag(data.toptags.tag[0].name))
