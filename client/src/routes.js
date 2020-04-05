@@ -5,6 +5,8 @@ import { AuthPage } from './pages/AuthPage';
 import { HomePage } from './pages/HomePage';
 import { PlaylistsPage } from './pages/PlaylistsPage';
 import { UsersPage } from './pages/UsersPage';
+import { AlbumPage } from './pages/AlbumPage';
+import { TagsPage } from './pages/TagsPage';
 
 export const useRoutes = (isAuthenticated, userId) => {
   if (isAuthenticated) {
@@ -17,6 +19,9 @@ export const useRoutes = (isAuthenticated, userId) => {
         <PlaylistsPage/>
       </Route>
 
+      <Route path="/albums/tags/:tag" component={TagsPage} />
+      <Route path="/albums/:artist/:albumName" component={AlbumPage} />
+
       <Route path="/users">
         <UsersPage/>
       </Route>
@@ -27,6 +32,9 @@ export const useRoutes = (isAuthenticated, userId) => {
   }
   return (<Switch>
 
+    <Route path="/albums/tags/:tag" component={TagsPage} />
+    <Route path="/albums/:artist/:albumName" component={AlbumPage} />
+    
     <Route path="/signin">
       <AuthPage/>
     </Route>
@@ -38,6 +46,7 @@ export const useRoutes = (isAuthenticated, userId) => {
     <Route path="/">
       <HomePage/>
     </Route>
+
 
     <Redirect to="/"/>
 

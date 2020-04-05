@@ -11,6 +11,13 @@ export const updateQuery = (query) => {
     payload: query
   }
 }
+
+export const updateTag = (tag) => {
+  return {
+    type: 'UPDATE_TAG',
+    payload: tag
+  }
+}
 // export const addAlbum = (playlist) => {
 //   return {
 //     type: 'ADD',

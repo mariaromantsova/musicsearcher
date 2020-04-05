@@ -15,6 +15,7 @@ i {
 }
 
 img {
+  border-radius: 3px;
   width: 100%;
   height: auto;
 }
@@ -28,6 +29,11 @@ img {
 
 .row .col {
   padding: 0 .75rem 0 0!important;
+}
+
+.btn-flat:hover {
+  background: #c2185b!important;
+  color: #fff!important;
 }
 
 h1, .brand-logo {
@@ -197,10 +203,6 @@ td.Blocked {
   border: solid 2px white;
   z-index: 1;
 }
-/*
-h5:hover .card-image {
-  -webkit-filter: brightness(60%);
-} */
 
 .album-button.added::before {
   content: '\e5ca';
@@ -220,12 +222,12 @@ h5:hover .card-image {
 }
 
 
-.modal { width: 30% !important; border-radius: 1em  }
+.modal { width: 22em!important; border-radius: 1em  }
 .modal .modal-content {
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 0px 20px!important;
 }
 .modal .modal-footer {
-  text-align: center;
+  text-align: center!important;
 }
 
 .collapsible-header {
@@ -255,10 +257,6 @@ h5:hover .card-image {
   cursor: pointer;
   transition: all .7s ease;
   -webkit-filter: brightness(100%);
-}
-
-.card-image img {
-  border-radius: 15px 15px 0 0!important;
 }
 
 .card-image:hover .playlist-cover {
@@ -306,8 +304,28 @@ h5:hover .card-image {
   color: #000;
 }
 
-/* @media only screen and (min-width: 601px) {
-  .container {
-    width: 85%;
+.album-details h5 {
+  margin: 0;
+}
+
+.album-details p {
+  text-align: justify;
+}
+
+.tags {
+  margin: 1.5em 0 1.5em;
+  text-align: center;
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 602px) {
+  .album-details .go-back {
+    opacity: .5;
+    margin: 1em!important;
+    position: absolute;
+    transition: all .2s ease;
   }
-} */
+  .album-details .go-back:hover {
+    opacity: 1;
+  }
+}

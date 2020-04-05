@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useHttp } from '../hooks/http.hook';
 import { useMessage } from '../hooks/message.hook';
 import { AuthContext } from '../context/AuthContext';
@@ -8,7 +8,7 @@ import queryString from "query-string";
 
 export const AuthPage = () => {
   const auth = useContext(AuthContext)
-
+  const history = useHistory()
   const message = useMessage()
   const {loading, request, error, clearError} = useHttp()
   const [form, setForm] = useState({
@@ -20,12 +20,12 @@ export const AuthPage = () => {
     if (query.status === 'Blocked') {
       message('Пользователь заблокирован')
       clearError()
-      setTimeout(() => window.location.replace('/signin'), 2500)
+      setTimeout(() => history.push('/signin'), 2500)
     }
 
     message(error)
     clearError()
-  }, [error, message, clearError])
+  }, [error, message, clearError, history])
 
   useEffect(() => {
     window.M.updateTextFields()
