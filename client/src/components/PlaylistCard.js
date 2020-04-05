@@ -13,7 +13,9 @@ export const PlaylistCard = ({ albums, playlistName }) => {
   const [artists, setArtists] = useState("")
 
   useEffect(() => {
-    setArtists(albums.map(album => album.artist.name || album.artist + ',').join(" ").slice(0, -1))
+    setArtists(
+      albums.map(album => album.artist.name || album.artist).join(", ")
+    )
 
     if (albums.length < 4) {
       setImageUrls(`url(${albums[0].image[2]['#text']})`)
