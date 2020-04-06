@@ -17,6 +17,7 @@ app.use(express.json({ extended: true }))
 
 app.use('/api/auth', require('./routes/auth.routes'))
 app.use('/api/users', require('./routes/users.routes'))
+app.use('/api/albums', require('./routes/albums.routes'))
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom'
 import {Spinner} from '../components/Spinner';
+import axios from 'axios';
+
+const apiKey = '52c7f1e1257548e0650675e63ead469c';
 
 
 export const AlbumPage = (props) => {
   const [album, setAlbum] = useState({})
   const history = useHistory()
 
+  const like = () => {
+    axios.post('/api/albums/' + JSON.parse(localStorage.getItem('userData')).email + '/add/', {album})
+    .then(res => console.log(res.data))
+  }
+
   useEffect(() => {
     const { match: { params } } = props;
 
     let lastFmAlbum;
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${process.env.REACT_APP_API_KEY}&artist=${params.artist}&album=${params.albumName}&lang=en&format=json`).then(res => res.json()).then(data => {
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=${apiKey}&artist=${params.artist}&album=${params.albumName}&lang=en&format=json`).then(res => res.json()).then(data => {
       lastFmAlbum = data.album
       setAlbum(lastFmAlbum)
     })
@@ -44,6 +52,13 @@ export const AlbumPage = (props) => {
 
       <div className="col s12 m5">
         <img src={album.image[5]['#text']} alt="" />
+
+        <div className="likes">
+          <i
+            className="material-icons"
+            onClick={like}
+          >favorite_border</i>
+        </div>
 
         <div className="tags">
           {

@@ -16,7 +16,6 @@ export const AuthPage = () => {
   })
 
   useEffect(() => {
-    console.log();
     let query = queryString.parse(window.location.search);
     if (query.status === 'Blocked') {
       message('User blocked')
@@ -77,10 +76,10 @@ export const AuthPage = () => {
                 <label htmlFor="password">Password</label>
 
                 <div style={{paddingTop: '1.5em'}}>
-                  <a href={`${process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:5000"}/api/auth/google`} className="waves-effect waves-light btn deep-orange accent-4">Sign in with Google</a>
+                  <a href="http://localhost:5000/api/auth/google" className="waves-effect waves-light btn deep-orange accent-4">Sign in with Google</a>
                 </div>
                 <div style={{paddingTop: '.5em'}}>
-                  <a href={`${process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:5000"}/api/auth/spotify`} className="waves-effect waves-light btn green accent-4">Sign in with Spotify</a>
+                  <a href="http://localhost:5000/api/auth/spotify" className="waves-effect waves-light btn green accent-4">Sign in with Spotify</a>
                 </div>
                 <p style={{paddingTop: '1.5em'}}>
                   Don't have an account?

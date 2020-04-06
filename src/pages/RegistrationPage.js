@@ -1,32 +1,24 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useHttp } from '../hooks/http.hook';
-import { useMessage } from '../hooks/message.hook';
-import { AuthContext } from '../context/AuthContext';
-import queryString from "query-string";
+import React, {useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {useHttp} from '../hooks/http.hook';
+import {useMessage} from '../hooks/message.hook';
 
 
-export const AuthPage = () => {
-  const auth = useContext(AuthContext)
-  const history = useHistory()
+export const RegistrationPage = () => {
   const message = useMessage()
   const {loading, request, error, clearError} = useHttp()
   const [form, setForm] = useState({
-    email: '', password: ''
+    username: '', email: '', password: ''
   })
 
   useEffect(() => {
-    console.log();
-    let query = queryString.parse(window.location.search);
-    if (query.status === 'Blocked') {
-      message('User blocked')
-      clearError()
-      setTimeout(() => history.push('/signin'), 2500)
-    }
-
     message(error)
     clearError()
-  }, [error, message, clearError, history])
+  }, [error, message, clearError])
+
+  useEffect(() => {
+    window.M.updateTextFields()
+  }, [])
 
   useEffect(() => {
     window.M.updateTextFields()
@@ -36,13 +28,12 @@ export const AuthPage = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const loginHandler = async () => {
+  const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/login', 'POST', {...form})
-      auth.login(data.token, data.userId, data.email, data.username)
+      const data = await request('/api/auth/register', 'POST', {...form})
+      message(data.message)
     } catch (e) {}
   }
-
 
   return (
     <div className='row' style={{ marginBottom: '0' }}>
@@ -50,10 +41,21 @@ export const AuthPage = () => {
         <div className="card">
           <div className="card-content">
             <span className="card-title">
-              <h5>Sign In</h5>
+              <h5>Sign Up</h5>
             </span>
             <div>
 
+              <div className="input-field">
+                <i className="material-icons prefix">account_circle</i>
+                <input
+                  className="pink-input"
+                  id="username"
+                  type="text"
+                  name="username"
+                  onChange={changeHandler}
+                />
+                <label htmlFor="username">Username</label>
+              </div>
               <div className="input-field">
                 <i className="material-icons prefix">email</i>
                 <input
@@ -75,18 +77,8 @@ export const AuthPage = () => {
                   onChange={changeHandler}
                 />
                 <label htmlFor="password">Password</label>
-
                 <div style={{paddingTop: '1.5em'}}>
-                  <a href={`${process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:5000"}/api/auth/google`} className="waves-effect waves-light btn deep-orange accent-4">Sign in with Google</a>
-                </div>
-                <div style={{paddingTop: '.5em'}}>
-                  <a href={`${process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:5000"}/api/auth/spotify`} className="waves-effect waves-light btn green accent-4">Sign in with Spotify</a>
-                </div>
-                <p style={{paddingTop: '1.5em'}}>
-                  Don't have an account?
-                </p>
-                <div>
-                  <Link to="/signup" className="pink-text">Sign Up</Link>
+                  <Link to="/signin" className="pink-text">Sign In</Link>
                 </div>
               </div>
 
@@ -96,11 +88,18 @@ export const AuthPage = () => {
             <button
               className="btn pink darken-2"
               style={{marginRight: '10px'}}
-              onClick={loginHandler}
+              onClick={registerHandler}
               disabled={loading}
             >
-              Sign In
+              Sign Up
             </button>
+            {/* <button
+              className="btn pink lighten-3"
+              onClick={registerHandler}
+              disabled={loading}
+            >
+              Register
+            </button> */}
           </div>
         </div>
       </div>

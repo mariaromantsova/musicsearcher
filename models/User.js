@@ -10,7 +10,7 @@ const schema = new Schema({
   registrationDate: { type: Date, default: Date.now },
   lastLoginDate: { type: Date, default: Date.now },
   status: { type: String, default: 'Active' },
-  playlists : { type : Object }
+  playlists : { type : Object },
 })
 
 module.exports = model('User', schema)

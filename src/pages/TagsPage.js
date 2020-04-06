@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AlbumsList } from '../components/AlbumsList';
 import { useHistory } from 'react-router-dom'
 
+const apiKey = '52c7f1e1257548e0650675e63ead469c';
+
 
 export const TagsPage = (props) => {
   const [albums, setAlbums] = useState({})
@@ -10,7 +12,7 @@ export const TagsPage = (props) => {
   useEffect(() => {
     const { match: { params } } = props;
 
-    fetch(`https://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${params.tag}&api_key=${process.env.REACT_APP_API_KEY}&limit=20&format=json`).then(res => res.json()).then(data => {
+    fetch(`https://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=${params.tag}&api_key=${apiKey}&limit=20&format=json`).then(res => res.json()).then(data => {
       let lastFmAlbums = data.albums.album;
       setAlbums(lastFmAlbums.filter((album, i) => i === lastFmAlbums.indexOf(album)))
       })

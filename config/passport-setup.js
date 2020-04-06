@@ -4,6 +4,9 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const User = require('../models/User')
 
+let url = process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:5000"
+
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 })
@@ -17,7 +20,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: config.get("google.clientID"),
   clientSecret: config.get("google.clientSecret"),
-  callbackURL: 'https://musicsearcher-test.herokuapp.com' + '/api/auth/google/redirect'
+  callbackURL: url + '/api/auth/google/redirect'
 }, (accessToken, refreshToken, profile, done) => {
   User.findOne({googleId: profile.id}).then((currentUser) => {
     if (currentUser) {
@@ -39,7 +42,7 @@ passport.use(new GoogleStrategy({
 passport.use(new SpotifyStrategy({
   clientID: config.get("spotify.clientID"),
   clientSecret: config.get("spotify.clientSecret"),
-  callbackURL: 'https://musicsearcher-test.herokuapp.com' + '/api/auth/spotify/redirect'
+  callbackURL: url + '/api/auth/spotify/redirect'
 }, (accessToken, refreshToken, expires_in, profile, done) => {
   // user = { ...profile, token: accessToken };
   User.findOne({spotifyId: profile.id}).then((currentUser) => {

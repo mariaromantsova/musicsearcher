@@ -4,6 +4,9 @@ import { updateTag } from '../actions';
 import { AlbumsList } from '../components/AlbumsList';
 import { Link } from 'react-router-dom'
 
+const userName = 'cemetary_party',
+  apiKey = '52c7f1e1257548e0650675e63ead469c';
+
 
 export const HomePage = () => {
   const dispatch = useDispatch()
@@ -15,13 +18,14 @@ export const HomePage = () => {
   const [albums, setAlbums] = useState({})
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_API_KEY);
     if (searchQuery.length) {
-      fetch(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchQuery}&api_key=${process.env.REACT_APP_API_KEY}&limit=10&format=json`).then(res => res.json()).then(data => {
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchQuery}&api_key=${apiKey}&limit=10&format=json`).then(res => res.json()).then(data => {
         let lastFmAlbums = data.results.albummatches.album;
         setAlbums(lastFmAlbums)
       })
     } else {
-      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${process.env.REACT_APP_LASTFM_USERNAME}&api_key=${process.env.REACT_APP_API_KEY}&period=6month&format=json`).then(res => res.json()).then(data => {
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${userName}&api_key=${apiKey}&period=6month&format=json`).then(res => res.json()).then(data => {
         let lastFmAlbums = data.topalbums?.album;
         setAlbums(lastFmAlbums.filter((album, i) => i === lastFmAlbums.indexOf(album)))
       })
@@ -30,8 +34,9 @@ export const HomePage = () => {
 
     Object.values(playlists).map(playlist => {
       playlist.map(album => {
-        fetch(`https://ws.audioscrobbler.com/2.0/?method=album.gettoptags&artist=${album.artist.name || album.artist}&album=${album.name}&api_key=${process.env.REACT_APP_API_KEY}&format=json`).then(res => res.json()).then(data => {
+        fetch(`https://ws.audioscrobbler.com/2.0/?method=album.gettoptags&artist=${album.artist.name || album.artist}&album=${album.name}&api_key=${apiKey}&format=json`).then(res => res.json()).then(data => {
           if (data.toptags.tag[0]) {
+            // console.log(album.artist.name || album.artist, data.toptags.tag[0].name);
             dispatch(updateTag(data.toptags.tag[0].name))
           }
         })

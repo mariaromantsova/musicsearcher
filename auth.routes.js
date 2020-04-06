@@ -5,8 +5,6 @@ const {check, validationResult} = require('express-validator')
 const router = require('express').Router()
 const User = require('../models/User')
 
-let url = process.env.NODE_ENV === "production" ? "https://musicsearcher-test.herokuapp.com" : "http://localhost:3000"
-
 // /api/auth/register
 router.post('/register', [
   check('username'),
@@ -87,6 +85,7 @@ router.post('/login', [
 })
 
 
+
 // auth with google+
 router.get('/google',
 passport.authenticate('google', {
@@ -96,11 +95,11 @@ passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 
   if (req.user.status === 'Blocked') {
-    res.redirect(url + `signin?status=${req.user.status}`)
+    res.redirect(process.env.DOMAIN || 'localhost3000' + `signin?status=${req.user.status}`)
     return
   }
 
-  res.redirect(url + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}`)
+  res.redirect(process.env.DOMAIN || 'localhost3000' + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}`)
 });
 
 
@@ -114,11 +113,11 @@ router.get(
 
 router.get("/spotify/redirect", passport.authenticate("spotify"), (req, res) => {
   if (req.user.status === 'Blocked') {
-    res.redirect(url + `/signin?status=${req.user.status}`)
+    res.redirect(process.env.DOMAIN || 'localhost3000' + `/signin?status=${req.user.status}`)
     return
   }
 
-  res.redirect(url + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}&status=${req.user.status}`)
+  res.redirect(process.env.DOMAIN || 'localhost3000' + `?token=${req.user.token}&id=${req.user._id}&email=${req.user.email}&username=${req.user.username}&status=${req.user.status}`)
 });
 
 module.exports = router
