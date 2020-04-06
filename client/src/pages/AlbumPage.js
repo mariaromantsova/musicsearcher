@@ -35,9 +35,8 @@ export const AlbumPage = (props) => {
     }
   }, [props]);
 
-console.log(album.description);
 
-  return album.image && album.description && Object.values(album).length !== 0 ? (
+  return album.image && Object.values(album).length !== 0 ? (
     <div className="row album-details" style={{ marginTop: "1.5em" }}>
       <div className="col s2 m1 go-back">
         <button className="btn-floating btn-flat grey darken-4"><i className="material-icons" onClick={() => history.goBack()}>keyboard_arrow_left</i></button>

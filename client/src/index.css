@@ -45,10 +45,6 @@ h1, .brand-logo {
   position: static!important;
 }
 
-.card .card-content {
-  padding: 0 1rem 1rem!important;
-}
-
 .playlist-card .card-content {
   height: 8em;
 }
@@ -167,6 +163,10 @@ td.Blocked {
   border-radius: 15px!important;
   margin: 1rem!important;
   width: 179px;
+}
+
+.album-card .card-content {
+  padding: 0 1rem 1rem!important;
 }
 
 .overlay {
