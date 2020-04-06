@@ -4,6 +4,7 @@ const schema = new Schema({
   token: { type: String },
   googleId: { type: String },
   spotifyId: { type: String },
+  lastfmId: { type: String },
   username: { type: String, required: true },
   email: { type: String, required: true, unique: false },
   password: { type: String },

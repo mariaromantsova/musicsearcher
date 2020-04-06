@@ -46,7 +46,7 @@ h1, .brand-logo {
 }
 
 .card .card-content {
-  padding: 24px 24px 24px 14px;
+  padding: 0 1rem 1rem!important;
 }
 
 .playlist-card .card-content {
@@ -165,7 +165,7 @@ td.Blocked {
 .album-card {
   position: relative;
   border-radius: 15px!important;
-  margin: .5rem 1rem 1rem 0!important;
+  margin: 1rem!important;
   width: 179px;
 }
 

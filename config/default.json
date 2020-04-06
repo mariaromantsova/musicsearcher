@@ -10,7 +10,8 @@
     "clientID": "07fcbe0d8a5547abbe120906b087ec59",
     "clientSecret": "f395405114084b8c8720987cf9f14a8a"
   },
-  "session": {
-    "cookieKey": "kykoldsasi"
+  "lastfm": {
+    "apiKey": "68f19a73081c1a17c0452eab2e7e33ee",
+    "secret": "af2d46ff276b4480eb5dd948294416b7"
   }
 }
